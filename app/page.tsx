@@ -10,6 +10,10 @@ import { MdEmail } from "react-icons/md";
 import { SiShowwcase } from "react-icons/si";
 import Outro from "./components/outro";
 import SlantingCardsContainer from "./components/slanting-cards";
+import TypeWriter from "./components/typewriter";
+import Stats from "./components/stats";
+import { motion } from 'framer-motion';
+
 
 export default function Page() {
   return (
@@ -44,44 +48,33 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div>
-        <p>I am a frontend developer and technical writer who loves being a part of the open-source community.
-          I work at <Link href="https://triallies.com/" target='_blank'><Tag className="mr-2" color='volcano'>Triallies LLC</Tag></Link>as a frontend developer,
-          where I enjoy collaborating with and learning from my colleagues. I am also a contributor at <Link href="https://reactplay.io/" target='_blank'><Tag className='mr-2 font-bold text-black' color='#1d1628'>ReactPlay</Tag></Link> and have worked with various communities and organizations. Check out about my work <Link href="/work" className='text-blue-500 font-extrabold'>here</Link>.
+      <TypeWriter />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="space-y-6"
+      >
+        <p className="text-lg leading-relaxed">
+          Building impactful web experiences at{" "}
+          <Link href="https://triallies.com/" target="_blank">
+            <Tag className="mr-2" color="volcano">Triallies LLC</Tag>
+          </Link>
+          and contributing to{" "}
+          <Link href="https://reactplay.io/" target="_blank">
+            <Tag className="mr-2 font-bold text-black" color="#1d1628">ReactPlay</Tag>
+          </Link>
+          . Passionate about sharing knowledge through blogs, talks, and community engagement.
         </p>
-      </div>
 
-      <div className="grid grid-cols-3 mx-w-screen">
-        <Image
-          src="/speaker.jpeg"
-          alt="Shivam Katare"
-          className='rounded-sm border-2 border-black max-w-screen'
-        />
-
-        <Image
-          src="/speakerTwo.jpeg"
-          alt="Shivam Katare"
-          className='rounded-sm border-2 border-black max-w-screen'
-        />
-
-        <Image
-          src="/speakerThree.jpeg"
-          alt="Shivam Katare"
-          className='rounded-sm border-2 border-black max-w-screen'
-        />
-      </div>
-
-      <div className='text-center'>
-      I always love being part of a community. I share my knowledge by writing blog posts,
-      speaking at tech events, posting on social media about tech-related topics like web development,
-      and participating in tech events. I enjoy collective learning and sharing knowledge with everyone.
-      </div>
+        <Stats />
+      </motion.div>
 
       <h2 className='text-[30px] text-center font-semibold tracking-tighter'>Projects</h2>
       <Project />
 
       <div className="w-full grid place-items-center">
-      <Tooltip title="Take me to Github" placement="bottom" className='mt-3'>
+        <Tooltip title="Take me to Github" placement="bottom" className='mt-3'>
           <Link href='https://github.com/Shivam-Katare?tab=repositories' target='_blank'>
             <Button className='bg-black text-white hover:bg-white' icon={<FaGithub />}>
               See all on Github

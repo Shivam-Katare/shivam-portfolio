@@ -19,10 +19,12 @@ function Work() {
 
   const [volunteerExperince, setVolunteerExperince] = useState<VolunteerType[]>([]);
   const [experience, setExperience] = useState<VolunteerType[]>([]);
+  const [freelance, setFreelance] = useState<VolunteerType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetchVolunteer();
     fetchExperience();
+    fetchFreelance();
   }, []);
 
   const fetchVolunteer = async () => {
@@ -47,6 +49,18 @@ function Work() {
       console.error('Error fetching images:', error);
     } else {
       setExperience(data);
+    }
+  }
+
+  const fetchFreelance = async () => {
+    const { data, error } = await supabase
+      .from('freelanceExperience')
+      .select('*')
+  
+    if (error) {
+      console.error('Error fetching images:', error);
+    } else {
+      setFreelance(data);
     }
   }
   return (
@@ -82,7 +96,7 @@ function Work() {
 
       </p>
       <p>
-        With community contributions, I also love to write blogs and share my learning with the world. You can read my blogs <Link href='https://shivamkatareblog.vercel.app/' target='_blank' className='text-green-500 font-extrabold'> here. </Link>.
+        With community contributions, I also love to write blogs and currently working as a freelance Technical Writer at <a href="https://www.studio1hq.com/" target='_blank'><Tag className="mr-2" color='orange'>Studio1</Tag></a>. You can read my blogs <Link href='https://shivamkatareblog.vercel.app/' target='_blank' className='text-green-500 font-extrabold'> here. </Link>
       </p>
 
       <div className='w-full grid grid-rows-[0.6fr_0.7fr] mt-4 gap-y-0'>
@@ -93,6 +107,7 @@ function Work() {
         <>
          <ListDisplay header={'Work Experience'} data={experience} />
          <ListDisplay header={'Voulenteer/Community Experince'} data={volunteerExperince}/>
+         <ListDisplay header={'Freelancer'} data={freelance} />
         </>
           )
        }

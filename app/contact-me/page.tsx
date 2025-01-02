@@ -93,7 +93,7 @@ const ContactPage: React.FC = () => {
 
           <div className="flex justify-center items-center space-x-4">
             <Text className="text-gray-600">
-              Let's connect via mail: <a href="katare27451@gmail.com@gmail.com" className="text-blue-600 hover:underline">katare27451@gmail.com </a> or through the form below
+              Let's connect via mail: <a href="katare27451@gmail.com" className="text-blue-600 hover:underline">katare27451@gmail.com </a> or through the form below
             </Text>
           </div>
         </Space>

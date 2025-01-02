@@ -24,15 +24,17 @@ function Project() {
   }, []);
 
   const fetchProject = async () => {
+    const titles = ['PhraseBox', 'Echoes', 'DROOG', 'Re-Card', 'Worde'];
     const { data, error } = await supabase
       .from('Projects')
       .select('*')
+      .in('title', titles);
 
     if (error) {
       console.error('Error fetching project:', error);
-    }
-    else {
-      setProject(data);
+    } else {
+      const sortedData = titles.map(title => data.find(project => project.title === title));
+      setProject(sortedData);
     }
     setLoading(false);
   }

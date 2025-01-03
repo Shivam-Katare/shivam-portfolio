@@ -26,7 +26,7 @@ const ListDisplay: React.FC<ListDisplayProps> = ({ header, data }) => {
         <List.Item>
           <Skeleton loading={item.loading} active>
             <List.Item.Meta
-              avatar={<Image src={item.avatar} alt='' width={20} height={20} style={{borderRadius: "33px"}} />}
+              avatar={<Image src={item.avatar} alt={item?.name} width={20} height={20} style={{borderRadius: "33px"}} />}
               title={item.name}
               description={item.description}
             />

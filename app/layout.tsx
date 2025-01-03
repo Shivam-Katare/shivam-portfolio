@@ -13,17 +13,33 @@ import Favicon from '../public/favicon.ico'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Shivam Katare',
-    template: 'Shivam Katare',
+    default: 'Shivam Katare | Frontend Engineer',
+    template: '%s | Shivam Katare',
   },
-  description: 'This is my portfolio.',
+  description: 'Frontend Engineer, and a Technical Writer.',
   openGraph: {
-    title: 'Shivam Katare',
-    description: 'This is my portfolio.',
+    title: 'Shivam Katare | Frontend Engineer',
+    description: 'Frontend Engineer, and a Technical Writer.',
     url: baseUrl,
     siteName: 'Shivam Katare',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: `${baseUrl}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Shivam Katare Portfolio Banner',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shivam Katare | Frontend Engineer',
+    description: 'Frontend Engineer, and a Technical Writer.',
+    site: '@Shivamkatare_27',
+    creator: '@Shivamkatare_27',
+    images: [`${baseUrl}/twitter-image.jpg`],
   },
   robots: {
     index: true,

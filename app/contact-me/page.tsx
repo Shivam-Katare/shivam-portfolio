@@ -1,24 +1,36 @@
 "use client";
 
-import React from 'react';
-import { Form, Input, Button, message, Space, Divider, Typography } from 'antd';
-import Head from 'next/head';
-import { FaUser } from 'react-icons/fa';
-import { MdMail } from 'react-icons/md';
-import { FaMessage } from 'react-icons/fa6';
-import { z } from 'zod';
-import { Container } from 'app/components/container';
-import Paragraph from 'antd/es/typography/Paragraph';
+import React from "react";
+import { Form, Input, Button, message, Space, Divider, Typography } from "antd";
+import Head from "next/head";
+import { FaUser } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
+import { FaMessage } from "react-icons/fa6";
+import { z } from "zod";
+import { Container } from "app/components/container";
+import Paragraph from "antd/es/typography/Paragraph";
 
 const { TextArea } = Input;
 const { Text } = Typography;
 
 // Zod schema for form validation
 const contactSchema = z.object({
-  name: z.string().min(4, 'Name must be at least 4 characters').max(50, 'Name must not exceed 50 characters'),
-  email: z.string().email('Invalid email address').regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Email must be a valid format"),
-  subject: z.string().min(5, 'Subject must be at least 5 characters').max(100, 'Subject must not exceed 100 characters'),
-  message: z.string().min(20, 'Message must be at least 20 characters').max(1000, 'Message must not exceed 1000 characters'),
+  name: z
+    .string()
+    .min(4, "Name must be at least 4 characters")
+    .max(50, "Name must not exceed 50 characters"),
+  email: z
+    .string()
+    .email("Invalid email address")
+    .regex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Email must be a valid format"),
+  subject: z
+    .string()
+    .min(5, "Subject must be at least 5 characters")
+    .max(100, "Subject must not exceed 100 characters"),
+  message: z
+    .string()
+    .min(20, "Message must be at least 20 characters")
+    .max(1000, "Message must not exceed 1000 characters"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -32,27 +44,27 @@ const ContactPage: React.FC = () => {
     try {
       contactSchema.parse(values);
 
-      const response = await fetch('/api/v1/send', {
-        method: 'POST',
+      const response = await fetch("/api/v1/send", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       });
 
       if (!response.ok) {
-        message.error('Failed to send message. Please try again.');
-        setIsSubmitting(false); 
+        message.error("Failed to send message. Please try again.");
+        setIsSubmitting(false);
       }
 
       const data = await response.json();
 
-      if (data.message === 'success') {
-        message.success('Message sent successfully!');
+      if (data.message === "success") {
+        message.success("Message sent successfully!");
         setIsSubmitting(false);
         form.resetFields();
       } else {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -61,7 +73,7 @@ const ContactPage: React.FC = () => {
           setIsSubmitting(false);
         });
       } else {
-        message.error('Failed to send message. Please try again.');
+        message.error("Failed to send message. Please try again.");
         setIsSubmitting(false);
       }
     } finally {
@@ -70,11 +82,13 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-
     <Container className="mx-auto flex max-w-3xl flex-col items-stretch gap-10 py-10">
       <Head>
         <title>Contact Me</title>
-        <meta name="description" content="Get in touch with me through this contact form." />
+        <meta
+          name="description"
+          content="Get in touch with me through this contact form."
+        />
       </Head>
 
       <div className="max-w-2xl mx-auto px-4 py-4">
@@ -88,19 +102,34 @@ const ContactPage: React.FC = () => {
           <Divider className="border-blue-300" />
 
           <Paragraph className="text-lg text-gray-700 leading-relaxed">
-            Whether you're looking for a <span className="font-semibold text-blue-500">freelance collaborator</span> or considering a <span className="font-semibold text-green-500">full-time hire</span>, I'm ready to bring my expertise to your project.
+            Whether you're looking for a{" "}
+            <span className="font-semibold text-blue-500">
+              freelance collaborator
+            </span>{" "}
+            or considering a{" "}
+            <span className="font-semibold text-green-500">full-time hire</span>
+            , I'm ready to bring my expertise to your project.
           </Paragraph>
 
           <div className="flex justify-center items-center space-x-4">
             <Text className="text-gray-600">
-              Let's connect via mail: <a href="katare27451@gmail.com" className="text-blue-600 hover:underline">katare27451@gmail.com </a> or through the form below
+              Let's connect via mail:{" "}
+              <a
+                href="mailTo:katare27451@gmail.com"
+                className="text-blue-600 hover:underline"
+              >
+                katare27451@gmail.com{" "}
+              </a>{" "}
+              or through the form below
             </Text>
           </div>
         </Space>
       </div>
       <div className="max-w-3xl w-full space-y-8 bg-white p-10 rounded-xl shadow-2xl">
         <div>
-          <h2 className="mt-1 text-center text-3xl font-extrabold text-gray-900">Get in Touch</h2>
+          <h2 className="mt-1 text-center text-3xl font-extrabold text-gray-900">
+            Get in Touch
+          </h2>
           <p className="mt-1 mb-4 text-center text-sm text-gray-600">
             I'd love to hear from you! Fill out the form below to get in touch.
           </p>
@@ -114,28 +143,40 @@ const ContactPage: React.FC = () => {
         >
           <Form.Item
             name="name"
-            rules={[{ required: true, message: 'Please input your name!' }]}
+            rules={[{ required: true, message: "Please input your name!" }]}
           >
-            <Input prefix={<FaUser className="site-form-item-icon" />} placeholder="Your Name" size="large" />
+            <Input
+              prefix={<FaUser className="site-form-item-icon" />}
+              placeholder="Your Name"
+              size="large"
+            />
           </Form.Item>
           <Form.Item
             name="email"
             rules={[
-              { required: true, message: 'Please input your email!' },
-              { type: 'email', message: 'Please enter a valid email!' }
+              { required: true, message: "Please input your email!" },
+              { type: "email", message: "Please enter a valid email!" },
             ]}
           >
-            <Input prefix={<MdMail className="site-form-item-icon" />} placeholder="Your Email" size="large" />
+            <Input
+              prefix={<MdMail className="site-form-item-icon" />}
+              placeholder="Your Email"
+              size="large"
+            />
           </Form.Item>
           <Form.Item
             name="subject"
-            rules={[{ required: true, message: 'Please input a subject!' }]}
+            rules={[{ required: true, message: "Please input a subject!" }]}
           >
-            <Input prefix={<FaMessage className="site-form-item-icon" />} placeholder="Subject" size="large" />
+            <Input
+              prefix={<FaMessage className="site-form-item-icon" />}
+              placeholder="Subject"
+              size="large"
+            />
           </Form.Item>
           <Form.Item
             name="message"
-            rules={[{ required: true, message: 'Please input your message!' }]}
+            rules={[{ required: true, message: "Please input your message!" }]}
           >
             <TextArea
               placeholder="Your Message"
@@ -149,7 +190,7 @@ const ContactPage: React.FC = () => {
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </Form.Item>
         </Form>

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useEffect } from 'react';
-import Slider from 'react-slick';
-import { motion } from 'framer-motion';
+import React from "react";
+import Slider from "react-slick";
+import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaQuoteLeft } from 'react-icons/fa6';
+import { FaQuoteLeft } from "react-icons/fa6";
 
 interface TestimonialProps {
   highlightedLines: string;
@@ -20,7 +20,11 @@ interface TestimonialSliderProps {
   testimonials: TestimonialProps[];
 }
 
-const TestimonialCard = ({ testimonial }: { testimonial: TestimonialProps }) => {
+const TestimonialCard = ({
+  testimonial,
+}: {
+  testimonial: TestimonialProps;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -35,17 +39,17 @@ const TestimonialCard = ({ testimonial }: { testimonial: TestimonialProps }) => 
             {testimonial.highlightedLines}
           </h3>
         </div>
-        
+
         <p className="text-gray-600 mb-4 flex-grow line-clamp-4">
           {testimonial.feedback}
         </p>
-        
+
         {testimonial.secondaryFeedback && (
           <p className="text-gray-500 text-sm mb-4 line-clamp-2">
             {testimonial.secondaryFeedback}
           </p>
         )}
-        
+
         <div className="mt-auto">
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-500">{testimonial.source}</span>
@@ -82,20 +86,20 @@ export function TestimonialSlider({ testimonials }: TestimonialSliderProps) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-        }
+        },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-12">
+    <div className="w-[22rem] sm:w-[28rem] md:w-full max-w-7xl mx-auto px-4 py-12">
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <TestimonialCard key={index} testimonial={testimonial} />

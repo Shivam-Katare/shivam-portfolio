@@ -24,7 +24,7 @@ function Project() {
   }, []);
 
   const fetchProject = async () => {
-    const titles = ['PhraseBox', 'Echoes', 'DROOG', 'Re-Card', 'Worde'];
+    const titles = ['Petals', 'PhraseBox', 'Echoes', 'DROOG', 'Re-Card', 'Worde'];
     const { data, error } = await supabase
       .from('Projects')
       .select('*')

@@ -1,63 +1,47 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const TypeWriter = () => {
-  const titles = ["A Frontend Engineer", "Technical Writer", "Community Contributor"];
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+  const subtitles = [
+    "shipping production apps",
+    "Open Source Contributor",
+    "Technical Writer",
+    "3x Hackathon Winner",
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const typingSpeed = 150; // Adjust typing speed (lower = faster)
-    const deletingSpeed = 100; // Adjust deleting speed (lower = faster)
-    const pauseDuration = 2000; // How long to pause at complete text
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % subtitles.length);
+    }, 3000); // Change text every 3 seconds
 
-    const handleTyping = () => {
-      const currentTitle = titles[currentTitleIndex];
-      
-      if (!isDeleting) {
-        if (currentText !== currentTitle) {
-          setCurrentText(currentTitle.substring(0, currentText.length + 1));
-        } else {
-          setTimeout(() => setIsDeleting(true), pauseDuration);
-        }
-      } else {
-        if (currentText === "") {
-          setIsDeleting(false);
-          setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
-        } else {
-          setCurrentText(currentTitle.substring(0, currentText.length - 1));
-        }
-      }
-    };
-
-    const timer = setTimeout(
-      handleTyping,
-      isDeleting ? deletingSpeed : typingSpeed
-    );
-
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentTitleIndex]);
+    return () => clearInterval(interval);
+  }, [subtitles.length]);
 
   return (
-    <div className='grid justify-items-center place-items-center'>
+    <div className="grid justify-items-center place-items-center text-center">
       <motion.div
-      className="min-h-[60px] flex items-center min-w-screen text-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <h1 className="text-6xl font-bold">
-        {currentText}
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-          className="ml-1 inline-block w-[3px] h-[44px] bg-black"
-        />
-      </h1>
-    </motion.div>
+        className="flex flex-col items-center gap-2"
+      >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+          A Frontend Engineer
+        </h1>
+        <div className="relative h-8 sm:h-10 flex items-center justify-end w-full">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={currentIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="absolute text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400"
+            >
+              {subtitles[currentIndex]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
+      </motion.div>
     </div>
-    
   );
 };
 

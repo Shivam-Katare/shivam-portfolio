@@ -31,116 +31,118 @@ const FaReact = React.lazy(() => import("react-icons/fa").then(module => ({ defa
 const RiBearSmileFill = React.lazy(() => import("react-icons/ri").then(module => ({ default: module.RiBearSmileFill })));
 function Skills() {
   return (
-    <Container className="mx-auto flex max-w-3xl flex-col items-stretch gap-10 py-10">
-      <h1 className='text-4xl font-bold'>Skills</h1>
+    <Container className="mx-auto flex max-w-3xl flex-col items-stretch gap-10">
+      <h1 className="text-4xl font-bold">Skills</h1>
       <p>
-        I enjoy working with various technologies, but JavaScript and Typescript-based frameworks and libraries are my favorites. They offer versatility and flexibility, and I&apos;m always discovering new ways to use them. Whether I&apos;m building web applications or experimenting with new programming techniques, they&apos;re my go-to tools.
+        I enjoy working with various technologies, but JavaScript and
+        Typescript-based frameworks and libraries are my favorites. They offer
+        versatility and flexibility, and I&apos;m always discovering new ways to
+        use them. Whether I&apos;m building web applications or experimenting
+        with new programming techniques, they&apos;re my go-to tools.
       </p>
 
       <div>
-        <div className='w-full grid justify-items-start gap-y-8'>
-
+        <div className="w-full grid justify-items-start gap-y-8">
           <h2>Languages</h2>
 
-          <div className='w-full flex justify-items-start col-auto gap-2 text-[40px]'>
+          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
             <Tooltip title="Javascript" placement="top">
-              <SiJavascript color='yellow' />
+              <SiJavascript color="yellow" />
             </Tooltip>
             <Tooltip title="Typescript" placement="top">
-              <SiTypescript color='#0076c6' />
+              <SiTypescript color="#0076c6" />
             </Tooltip>
             <Tooltip title="Java" placement="top">
-              <FaJava color='red' />
+              <FaJava color="red" />
             </Tooltip>
             <Tooltip title="HTML" placement="top">
-              <FaHtml5 color='orange' />
+              <FaHtml5 color="orange" />
             </Tooltip>
             <Tooltip title="CSS" placement="top">
-              <FaCss3Alt color='blue' />
+              <FaCss3Alt color="blue" />
             </Tooltip>
           </div>
 
           <h2>Libraies/Framework</h2>
 
-          <div className='w-full flex justify-items-start col-auto gap-2 text-[40px]'>
+          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
             <Tooltip title="React" placement="top">
-              <FaReact color='#00d1f7' />
+              <FaReact color="#00d1f7" />
             </Tooltip>
 
             <Tooltip title="Next.js" placement="top">
-              <SiNextdotjs color='black' />
+              <SiNextdotjs color="black" />
             </Tooltip>
 
             <Tooltip title="Material UI" placement="top">
-              <SiMaterialdesign color='skyblue' />
+              <SiMaterialdesign color="skyblue" />
             </Tooltip>
 
             <Tooltip title="Node.js" placement="top">
-              <SiNodedotjs color='green' />
+              <SiNodedotjs color="green" />
             </Tooltip>
 
             <Tooltip title="Express.js" placement="top">
-              <SiExpress color='red' />
+              <SiExpress color="red" />
             </Tooltip>
 
             <Tooltip title="Tailwind CSS" placement="top">
-              <SiTailwindcss color='#00d1f7' />
+              <SiTailwindcss color="#00d1f7" />
             </Tooltip>
 
             <Tooltip title="Zustand" placement="top">
-              <RiBearSmileFill color='#e6af3c' />
+              <RiBearSmileFill color="#e6af3c" />
             </Tooltip>
 
             <Tooltip title="Redux" placement="top">
-              <SiRedux color='purple' />
+              <SiRedux color="purple" />
             </Tooltip>
           </div>
 
           <h2>Database</h2>
 
-          <div className='w-full flex justify-items-start col-auto gap-2 text-[40px]'>
+          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
             <Tooltip title="Firebase" placement="top">
-              <SiFirebase color='#f79b00' />
+              <SiFirebase color="#f79b00" />
             </Tooltip>
             <Tooltip title="MongoDB" placement="top">
-              <SiMongodb color='green' />
+              <SiMongodb color="green" />
             </Tooltip>
             <Tooltip title="My SQL" placement="top">
-              <SiMysql color='blue' />
+              <SiMysql color="blue" />
             </Tooltip>
             <Tooltip title="Supabase" placement="top">
-              <SiSupabase color='#31ad75' />
+              <SiSupabase color="#31ad75" />
             </Tooltip>
           </div>
 
           <h2>Testing</h2>
 
-          <div className='w-full flex justify-items-start col-auto gap-2 text-[40px]'>
+          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
             <Tooltip title="Jest" placement="top">
-              <SiJest color='red' />
+              <SiJest color="red" />
             </Tooltip>
 
             <Tooltip title="StoryBook" placement="top">
-              <SiStorybook color='pink' />
+              <SiStorybook color="pink" />
             </Tooltip>
 
             <Tooltip title="Cypress" placement="top">
-              <SiCypress color='#22926a' />
+              <SiCypress color="#22926a" />
             </Tooltip>
           </div>
 
           <h2>Tools</h2>
 
-          <div className='w-full flex justify-items-start col-auto gap-2 text-[40px]'>
+          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
             <Tooltip title="Docker" placement="top">
-              <SiDocker color='#008db2' />
+              <SiDocker color="#008db2" />
             </Tooltip>
 
             <Tooltip title="Github" placement="top">
-              <SiGithub color='black' />
+              <SiGithub color="black" />
             </Tooltip>
           </div>
-
         </div>
       </div>
 
@@ -150,7 +152,7 @@ function Skills() {
         </Button>
       </Link>
     </Container>
-  )
+  );
 }
 
 export default Skills;

@@ -1,31 +1,31 @@
 "use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { FaExternalLinkSquareAlt } from 'react-icons/fa';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaExternalLinkSquareAlt } from "react-icons/fa";
 
 const navItems = {
-  '/': {
-    name: 'Home',
-    newTab: false
+  "/": {
+    name: "Home",
+    newTab: false,
   },
-  '/skills': {
-    name: 'Skills',
-    newTab: false
+  "/skills": {
+    name: "Skills",
+    newTab: false,
   },
-  '/work': {
-    name: 'Work',
-    newTab: false
+  "/work": {
+    name: "Work",
+    newTab: false,
   },
-  '/contact-me': {
-    name: 'Contact me',
-    newTab: false
+  "/contact-me": {
+    name: "Contact me",
+    newTab: false,
   },
-  'https://shivamkatareblog.vercel.app/': {
-    name: 'Blog',
+  "https://shivamkatareblog.vercel.app/": {
+    name: "Blog",
     newTab: true,
-  }
-}
+  },
+};
 
 export function Navbar() {
   const pathname = usePathname();
@@ -43,20 +43,20 @@ export function Navbar() {
                 <Link
                   key={path}
                   href={path}
-                  className={`transition-all hover:text-neutral-400 flex align-middle relative py-1 px-2 m-1 ${isActive ? 'text-blue-500 font-bold' : ''}`}
+                  className={`transition-all hover:text-neutral-400 flex align-middle relative py-1 px-2 m-1 ${isActive ? "text-orange-500 font-bold" : ""}`}
                   prefetch={true}
-                  target={newTab ? '_blank' : '_self'}
+                  target={newTab ? "_blank" : "_self"}
                 >
                   {name}
-                  {path === 'https://shivamkatareblog.vercel.app/' && (
+                  {path === "https://shivamkatareblog.vercel.app/" && (
                     <FaExternalLinkSquareAlt className="ml-1 h-4 w-4" />
                   )}
                 </Link>
-              )
+              );
             })}
           </div>
         </nav>
       </div>
     </aside>
-  )
+  );
 }

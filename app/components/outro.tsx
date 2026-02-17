@@ -1,53 +1,58 @@
-import React from 'react'
-import { FaGithub, FaLinkedin, FaSquareXTwitter } from 'react-icons/fa6'
+import React from "react";
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
 
 function Outro() {
   return (
-    <React.Fragment>
-      <div className='w-full'>
-        <div className='w-full text-center justify-items-center'>
-          <p className='inline mr-2 font-[fantasy] text-[24px]'>
-            Let&apos;s Create Something Amazing Together! 🚀
-          </p>
-        </div>
+    <div className="w-full text-center space-y-6">
+      <h2 className="text-3xl font-bold">Let's work together</h2>
 
-        <div className='mt-6'>
-          <div className='text-center'>
-            <span>
-              I share my knowledge by writing blog posts, speaking at tech events, posting on socials about tech-related topics like web development.
-            </span>
-          </div>
-        </div>
+      <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+        I help teams and individuals build and ship reliable frontend products.
+        If you have a project, role, or collaboration in mind, let's talk.
+      </p>
 
-        <p className='mt-6 text-left'>
-           <b>Reach out to me</b> -
-        </p>
-
-        <div className='mt-6 w-full poppins-medium text-[17px]'>
-          <div className='text-center'>
-            You can connect with me through <span className='innovative'>
-              <span>
-                my socials, or 💌
-              </span>
-            </span>
-
-            <span className='text-[#ff007e] font-semibold'> 
-                <a href="mailTo:katare27451@gmail.com" className='font-extrabold'> email me </a>
-           </span>
-              for any opportunitie.
-          </div>
-        </div>
-
-        <div className='w-full grid place-items-center mt-1.5'>
-        <div className='mt-2 grid place-items-center grid-cols-3 justify-items-center items-center text-[20px]'>
-          <a href='https://www.linkedin.com/in/shivam-katare/' target='_blank'> <FaLinkedin /> </a>
-          <a href='https://github.com/Shivam-Katare' target='_blank'> <FaGithub /></a>
-          <a href='https://twitter.com/Shivamkatare_27' target='_blank'> <FaSquareXTwitter /></a>
-        </div>
-        </div>
+      <div className="pt-2">
+        <Link
+          href="mailto:katare27451@gmail.com"
+          className="inline-block bg-orange-500 text-white font-medium px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors"
+        >
+          Mail me →
+        </Link>
       </div>
-    </React.Fragment>
-  )
+
+      <div className="flex justify-center items-center gap-6 pt-4">
+        <a
+          href="https://twitter.com/Shivamkatare_27"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-black transition-colors text-xl"
+          aria-label="Twitter"
+        >
+          <FaSquareXTwitter />
+        </a>
+        <a
+          href="https://github.com/Shivam-Katare"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-black transition-colors text-xl"
+          aria-label="GitHub"
+        >
+          <FaGithub />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/shivam-katare/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-black transition-colors text-xl"
+          aria-label="LinkedIn"
+        >
+          <FaLinkedin />
+        </a>
+      </div>
+    </div>
+  );
 }
 
-export default Outro
+export default Outro;

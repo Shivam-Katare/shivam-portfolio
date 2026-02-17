@@ -64,7 +64,7 @@ function Work() {
     }
   };
   return (
-    <Container className="mx-auto flex max-w-5xl flex-col items-stretch py-10">
+    <Container className="mx-auto flex max-w-5xl flex-col items-stretch">
       <h1 className="text-4xl font-bolder mb-8">Work</h1>
 
       <div className="w-full grid grid-rows-[0.6fr_0.7fr] mb-4 gap-y-0">
@@ -140,7 +140,7 @@ function Work() {
       </p>
 
       <p className="mb-8">
-        With this, I am also currently a part of{" "}
+        With this, I was also a part of{" "}
         <a href="https://www.thehumansoftech.com/" target="_blank">
           <Tag className="mr-2" color="black">
             Humans Of Tech

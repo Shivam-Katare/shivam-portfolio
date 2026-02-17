@@ -22,7 +22,7 @@ function Project() {
       description:
         "AI-powered email intelligence tool that sorts, summarizes, and prioritizes Gmail using AI agents and workflows.",
       meta: "🥈 2nd place · 500+ project submissions",
-      image: "/Tria.png",
+      image: "/tria.png",
       viewUrl: "https://hellotria.vercel.app/",
       sourceUrl: "https://github.com/Shivam-Katare/tria",
       ribbonText: "Hackathon Winner",

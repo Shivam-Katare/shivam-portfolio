@@ -1,157 +1,275 @@
-import React from 'react'
-import { Container } from '../components/container'
-import { Button, Tooltip } from 'antd';
-import Link from 'next/link';
+"use client";
 
-const SiJavascript = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiJavascript })));
-const SiTypescript = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiTypescript })));
-const SiRedux = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiRedux })));
-const SiNextdotjs = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiNextdotjs })));
-const SiMaterialdesign = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiMaterialdesign })));
-const SiNodedotjs = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiNodedotjs })));
-const SiExpress = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiExpress })));
-const SiTailwindcss = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiTailwindcss })));
-const SiFirebase = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiFirebase })));
-const SiMongodb = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiMongodb })));
-const SiMysql = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiMysql })));
-const SiStorybook = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiStorybook })));
-const SiCypress = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiCypress })));
-const SiJest = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiJest })));
-const SiDocker = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiDocker })));
-const SiGithub = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiGithub })));
-const SiSupabase = React.lazy(() => import("react-icons/si").then(module => ({ default: module.SiSupabase })));
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  SiJavascript,
+  SiTypescript,
+  SiRedux,
+  SiNextdotjs,
+  SiMaterialdesign,
+  SiNodedotjs,
+  SiExpress,
+  SiTailwindcss,
+  SiFirebase,
+  SiMongodb,
+  SiMysql,
+  SiStorybook,
+  SiCypress,
+  SiJest,
+  SiDocker,
+  SiGithub,
+  SiSupabase,
+} from "react-icons/si";
+import { FaJava, FaHtml5, FaCss3Alt, FaReact } from "react-icons/fa";
+import { RiBearSmileFill } from "react-icons/ri";
 
-// Lazy import for Font Awesome icons
-const FaJava = React.lazy(() => import("react-icons/fa").then(module => ({ default: module.FaJava })));
-const FaHtml5 = React.lazy(() => import("react-icons/fa").then(module => ({ default: module.FaHtml5 })));
-const FaCss3Alt = React.lazy(() => import("react-icons/fa").then(module => ({ default: module.FaCss3Alt })));
-const FaReact = React.lazy(() => import("react-icons/fa").then(module => ({ default: module.FaReact })));
+const skillCategories = [
+  {
+    title: "Languages",
+    description: "The core vernaculars I use to build robust applications.",
+    skills: [
+      {
+        name: "JavaScript",
+        icon: SiJavascript,
+        color: "group-hover/skill:text-[#F7DF1E]",
+      },
+      {
+        name: "TypeScript",
+        icon: SiTypescript,
+        color: "group-hover/skill:text-[#3178C6]",
+      },
+      { name: "Java", icon: FaJava, color: "group-hover/skill:text-[#007396]" },
+      {
+        name: "HTML5",
+        icon: FaHtml5,
+        color: "group-hover/skill:text-[#E34F26]",
+      },
+      {
+        name: "CSS3",
+        icon: FaCss3Alt,
+        color: "group-hover/skill:text-[#1572B6]",
+      },
+    ],
+  },
+  {
+    title: "Frameworks & Libraries",
+    description: "My primary tools for crafting interactive user interfaces.",
+    skills: [
+      {
+        name: "React",
+        icon: FaReact,
+        color: "group-hover/skill:text-[#61DAFB]",
+      },
+      {
+        name: "Next.js",
+        icon: SiNextdotjs,
+        color: "group-hover/skill:text-white",
+      },
+      {
+        name: "Tailwind CSS",
+        icon: SiTailwindcss,
+        color: "group-hover/skill:text-[#06B6D4]",
+      },
+      {
+        name: "Node.js",
+        icon: SiNodedotjs,
+        color: "group-hover/skill:text-[#339933]",
+      },
+      {
+        name: "Express",
+        icon: SiExpress,
+        color: "group-hover/skill:text-white",
+      },
+      {
+        name: "Redux",
+        icon: SiRedux,
+        color: "group-hover/skill:text-[#764ABC]",
+      },
+      {
+        name: "Zustand",
+        icon: RiBearSmileFill,
+        color: "group-hover/skill:text-[#ea580c]",
+      },
+      {
+        name: "Material UI",
+        icon: SiMaterialdesign,
+        color: "group-hover/skill:text-[#0081CB]",
+      },
+    ],
+  },
+  {
+    title: "Database & Cloud",
+    description: "Managing data and serverless architectures safely.",
+    skills: [
+      {
+        name: "Supabase",
+        icon: SiSupabase,
+        color: "group-hover/skill:text-[#3ECF8E]",
+      },
+      {
+        name: "Firebase",
+        icon: SiFirebase,
+        color: "group-hover/skill:text-[#FFCA28]",
+      },
+      {
+        name: "MongoDB",
+        icon: SiMongodb,
+        color: "group-hover/skill:text-[#47A248]",
+      },
+      {
+        name: "MySQL",
+        icon: SiMysql,
+        color: "group-hover/skill:text-[#4479A1]",
+      },
+    ],
+  },
+  {
+    title: "Testing & Architecture",
+    description: "Ensuring quality, reliability, and seamless deployments.",
+    skills: [
+      { name: "Jest", icon: SiJest, color: "group-hover/skill:text-[#C21325]" },
+      {
+        name: "Cypress",
+        icon: SiCypress,
+        color: "group-hover/skill:text-[#17202C]",
+      },
+      {
+        name: "Storybook",
+        icon: SiStorybook,
+        color: "group-hover/skill:text-[#FF4785]",
+      },
+      {
+        name: "Docker",
+        icon: SiDocker,
+        color: "group-hover/skill:text-[#2496ED]",
+      },
+      { name: "GitHub", icon: SiGithub, color: "group-hover/skill:text-white" },
+    ],
+  },
+];
 
-// Lazy import for RiBearSmileFill icon
-const RiBearSmileFill = React.lazy(() => import("react-icons/ri").then(module => ({ default: module.RiBearSmileFill })));
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  initial: { opacity: 0, y: 10 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 function Skills() {
   return (
-    <Container className="mx-auto flex max-w-3xl flex-col items-stretch gap-10">
-      <h1 className="text-4xl font-bold">Skills</h1>
-      <p>
-        I enjoy working with various technologies, but JavaScript and
-        Typescript-based frameworks and libraries are my favorites. They offer
-        versatility and flexibility, and I&apos;m always discovering new ways to
-        use them. Whether I&apos;m building web applications or experimenting
-        with new programming techniques, they&apos;re my go-to tools.
-      </p>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={staggerContainer}
+      className="mx-auto flex w-full max-w-4xl flex-col items-stretch mt-12 md:mt-24 px-4 sm:px-6 mb-24"
+    >
+      <motion.div variants={pageVariants} className="mb-16">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+          Technical Toolkit
+        </h1>
+        <p className="text-lg text-zinc-400 font-light leading-relaxed max-w-3xl">
+          I enjoy working with various technologies, but JavaScript and
+          TypeScript-based frameworks and libraries are my favorites. They offer
+          versatility and flexibility, and I&apos;m always discovering new ways
+          to use them. Whether I&apos;m building web applications or
+          experimenting with new programming techniques, they&apos;re my go-to
+          tools.
+        </p>
+      </motion.div>
 
-      <div>
-        <div className="w-full grid justify-items-start gap-y-8">
-          <h2>Languages</h2>
+      <motion.div
+        variants={staggerContainer}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16"
+      >
+        {skillCategories.map((category, idx) => (
+          <motion.div
+            key={idx}
+            variants={itemVariants}
+            className="group relative flex flex-col p-6 md:p-8 rounded-[2rem] bg-[#303030] border border-white/5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-white/10 hover:bg-white/[0.22]"
+          >
+            <div className="mb-8">
+              <h2 className="text-zinc-100 font-medium text-lg tracking-tight mb-2">
+                {category.title}
+              </h2>
+              <p className="text-zinc-500 text-sm font-light">
+                {category.description}
+              </p>
+            </div>
 
-          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
-            <Tooltip title="Javascript" placement="top">
-              <SiJavascript color="yellow" />
-            </Tooltip>
-            <Tooltip title="Typescript" placement="top">
-              <SiTypescript color="#0076c6" />
-            </Tooltip>
-            <Tooltip title="Java" placement="top">
-              <FaJava color="red" />
-            </Tooltip>
-            <Tooltip title="HTML" placement="top">
-              <FaHtml5 color="orange" />
-            </Tooltip>
-            <Tooltip title="CSS" placement="top">
-              <FaCss3Alt color="blue" />
-            </Tooltip>
-          </div>
+            <div className="flex flex-wrap gap-2.5 mt-auto">
+              {category.skills.map((skill, skillIdx) => {
+                const Icon = skill.icon;
+                return (
+                  <div
+                    key={skillIdx}
+                    className="group/skill flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm cursor-default"
+                  >
+                    <Icon
+                      className={`text-base text-zinc-400 transition-colors duration-300 ${skill.color}`}
+                    />
+                    <span className="text-sm font-medium text-zinc-300 group-hover/skill:text-zinc-100 transition-colors">
+                      {skill.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
 
-          <h2>Libraies/Framework</h2>
-
-          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
-            <Tooltip title="React" placement="top">
-              <FaReact color="#00d1f7" />
-            </Tooltip>
-
-            <Tooltip title="Next.js" placement="top">
-              <SiNextdotjs color="black" />
-            </Tooltip>
-
-            <Tooltip title="Material UI" placement="top">
-              <SiMaterialdesign color="skyblue" />
-            </Tooltip>
-
-            <Tooltip title="Node.js" placement="top">
-              <SiNodedotjs color="green" />
-            </Tooltip>
-
-            <Tooltip title="Express.js" placement="top">
-              <SiExpress color="red" />
-            </Tooltip>
-
-            <Tooltip title="Tailwind CSS" placement="top">
-              <SiTailwindcss color="#00d1f7" />
-            </Tooltip>
-
-            <Tooltip title="Zustand" placement="top">
-              <RiBearSmileFill color="#e6af3c" />
-            </Tooltip>
-
-            <Tooltip title="Redux" placement="top">
-              <SiRedux color="purple" />
-            </Tooltip>
-          </div>
-
-          <h2>Database</h2>
-
-          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
-            <Tooltip title="Firebase" placement="top">
-              <SiFirebase color="#f79b00" />
-            </Tooltip>
-            <Tooltip title="MongoDB" placement="top">
-              <SiMongodb color="green" />
-            </Tooltip>
-            <Tooltip title="My SQL" placement="top">
-              <SiMysql color="blue" />
-            </Tooltip>
-            <Tooltip title="Supabase" placement="top">
-              <SiSupabase color="#31ad75" />
-            </Tooltip>
-          </div>
-
-          <h2>Testing</h2>
-
-          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
-            <Tooltip title="Jest" placement="top">
-              <SiJest color="red" />
-            </Tooltip>
-
-            <Tooltip title="StoryBook" placement="top">
-              <SiStorybook color="pink" />
-            </Tooltip>
-
-            <Tooltip title="Cypress" placement="top">
-              <SiCypress color="#22926a" />
-            </Tooltip>
-          </div>
-
-          <h2>Tools</h2>
-
-          <div className="w-full flex justify-items-start col-auto gap-2 text-[40px]">
-            <Tooltip title="Docker" placement="top">
-              <SiDocker color="#008db2" />
-            </Tooltip>
-
-            <Tooltip title="Github" placement="top">
-              <SiGithub color="black" />
-            </Tooltip>
-          </div>
-        </div>
-      </div>
-
-      <Link href="/work">
-        <Button>
+      <motion.div variants={pageVariants} className="flex justify-start">
+        <Link
+          href="/work"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black"
+        >
           <span>Check out my Work</span>
-        </Button>
-      </Link>
-    </Container>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3.33333 8H12.6667"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M8 3.33334L12.6667 8L8 12.6667"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+      </motion.div>
+    </motion.div>
   );
 }
 

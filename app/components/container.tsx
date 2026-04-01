@@ -3,6 +3,6 @@ type Props = {
   className?: string;
 };
 
-export const Container = ({ children, className }: Props) => {
-  return <div className={"container sm:mx-auto " + className}>{children}</div>;
+export const Container = ({ children, className = "" }: Props) => {
+  return <div className={`w-full mx-auto ${className}`}>{children}</div>;
 };

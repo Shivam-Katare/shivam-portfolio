@@ -1,82 +1,145 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
-  FaGithub,
-  FaHashnode,
-  FaLinkedin,
-  FaSquareXTwitter,
-} from "react-icons/fa6";
+  PiGithubLogoThin,
+  PiLinkedinLogoThin,
+  PiEnvelopeThin,
+} from "react-icons/pi";
+import { SiPeerlist } from "react-icons/si";
 import Link from "next/link";
 import { FloatButton } from "antd";
 import Project from "./components/project";
-import { Container } from "./components/container";
-import { MdEmail } from "react-icons/md";
-import { SiPeerlist } from "react-icons/si";
 import Outro from "./components/outro";
 import TypeWriter from "./components/typewriter";
 import Highlights from "./components/highlights/highlights";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Page() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { type: "spring", stiffness: 80, damping: 20 },
+    },
+  };
+
   return (
-    <Container className="flex max-w-3xl flex-col items-stretch gap-10">
-      <div className="w-full grid justify-items-center gap-y-3 sm:grid-cols-2 sm:justify-self-stretch sm:gap-y-0 sm:justify-items-start">
-        <p className="mb-2 text-2xl tracking-tighter font-crimson">{`Hi, I'm Shivam 👋`}</p>
-        <div className="grid w-full justify-center sm:justify-end">
-          <div className="w-full grid grid-cols-[0.2fr_0.2fr_0.2fr_0.2fr_0.2fr_0.2fr] justify-items-end gap-3">
-            <Link href="https://github.com/Shivam-Katare" target="_blank">
-              <FaGithub className="text-2xl" />
-            </Link>
-
-            <Link href="https://twitter.com/Shivamkatare_27" target="_blank">
-              <FaSquareXTwitter className="text-2xl" />
-            </Link>
-
-            <Link
-              href="https://www.linkedin.com/in/shivam-katare/"
-              target="_blank"
-            >
-              <FaLinkedin className="text-2xl" style={{ color: "blue" }} />
-            </Link>
-
-            <Link href="https://hashnode.com/@ShivamKatare" target="_blank">
-              <FaHashnode className="text-2xl text-blue-500" />
-            </Link>
-
-            <Link href="mailto:katare27451@gmail.com" target="_blank">
-              <MdEmail className="text-2xl" style={{ color: "red" }} />
-            </Link>
-
-            <Link href="https://peerlist.io/shivamkatare" target="_blank">
-              <SiPeerlist className="text-2xl" style={{ color: "green" }} />
-            </Link>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="flex flex-col gap-24 w-full"
+    >
+      {/* Hero Section - Asymmetrical Split / Glass Vibe */}
+      <motion.section
+        variants={itemVariants}
+        className="w-full flex flex-col md:flex-row gap-12 md:items-end justify-between min-h-[40vh] pt-12"
+      >
+        <div className="flex flex-col gap-6 max-w-2xl">
+          <div className="inline-flex items-center gap-3">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            </span>
+            <span className="text-xs uppercase tracking-[0.2em] text-zinc-400 font-medium">
+              Available for new opportunities
+            </span>
           </div>
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-[1.1] text-zinc-100">
+            Shivam Katare.
+          </h1>
+          <TypeWriter />
+          <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-[65ch] font-light">
+            I build interfaces that feel fast and make sense{" "}
+            <span className="text-zinc-200 font-medium">
+              when you use them.
+            </span>{" "}
+            I build AI-driven applications, write technical content for
+            engineering teams & Focus on{" "}
+            <span className="text-zinc-200 font-medium">haptic depth</span>.
+          </p>
         </div>
-      </div>
-      <TypeWriter />
-      <p>
-        I work with startups and product teams, contribute to open source, build
-        GenAI applications and write technical content for developers.
-      </p>
-      <div className="space-y-6">
+
+        {/* Floating Social Island */}
+        <div className="flex gap-4 p-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md w-fit">
+          {[
+            {
+              href: "https://github.com/Shivam-Katare",
+              icon: PiGithubLogoThin,
+            },
+            {
+              href: "https://x.com/Shivamkatare_27",
+              icon: FaXTwitter,
+            },
+            {
+              href: "https://www.linkedin.com/in/shivam-katare/",
+              icon: PiLinkedinLogoThin,
+            },
+            { href: "mailto:katare27451@gmail.com", icon: PiEnvelopeThin },
+          ].map((social, idx) => (
+            <Link
+              key={idx}
+              href={social.href}
+              target="_blank"
+              className="p-3 rounded-full hover:bg-white/10 transition-colors group relative overflow-hidden"
+            >
+              <social.icon className="text-2xl text-zinc-400 group-hover:text-white transition-colors group-active:scale-95 duration-300" />
+            </Link>
+          ))}
+          <Link
+            href="https://peerlist.io/shivamkatare"
+            target="_blank"
+            className="p-3 rounded-full hover:bg-white/10 transition-colors group relative overflow-hidden"
+          >
+            <SiPeerlist className="text-xl text-zinc-400 group-hover:text-[#00BA70] transition-colors group-active:scale-95 duration-300 m-[2px]" />
+          </Link>
+        </div>
+      </motion.section>
+
+      {/* Highlights - Bento Style */}
+      <motion.section variants={itemVariants} className="w-full">
         <Highlights />
-      </div>
+      </motion.section>
 
-      <h2 className="text-[30px] text-center font-semibold tracking-tighter">
-        Selected Work
-      </h2>
-      <Project />
+      {/* Selected Work */}
+      <motion.section
+        variants={itemVariants}
+        className="w-full flex flex-col gap-12"
+      >
+        <div className="flex w-full items-end justify-between border-b border-white/10 pb-6">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-100">
+            Selected Work.
+          </h2>
+          <Link
+            href="https://github.com/Shivam-Katare?tab=repositories"
+            target="_blank"
+            className="text-sm uppercase tracking-widest text-zinc-500 hover:text-zinc-200 transition-colors pb-1 border-b border-transparent hover:border-zinc-200"
+          >
+            View Archive
+          </Link>
+        </div>
+        <Project />
+      </motion.section>
 
-      <div className="w-full grid place-items-center">
-        <Link
-          href="https://github.com/Shivam-Katare?tab=repositories"
-          target="_blank"
-          className="text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors flex items-center gap-1"
-        >
-          View all projects →
-        </Link>
-      </div>
-      <Outro />
+      <motion.section variants={itemVariants} className="w-full">
+        <Outro />
+      </motion.section>
+
       <FloatButton.BackTop />
-    </Container>
+    </motion.div>
   );
 }

@@ -1,5 +1,14 @@
 module.exports = {
   images: {
-    domains: ['ik.imagekit.io', 'cdn.hashnode.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.hashnode.com",
+      },
+    ],
   },
-}
+};

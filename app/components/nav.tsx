@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaExternalLinkSquareAlt } from "react-icons/fa";
+import { RxExternalLink } from "react-icons/rx";
 
 const navItems = {
   "/": {
@@ -18,7 +18,7 @@ const navItems = {
     newTab: false,
   },
   "/contact-me": {
-    name: "Contact me",
+    name: "Contact",
     newTab: false,
   },
   "https://shivamkatareblog.vercel.app/": {
@@ -30,33 +30,33 @@ const navItems = {
 export function Navbar() {
   const pathname = usePathname();
   return (
-    <aside className="-ml-[8px] tracking-tight">
-      <div className="lg:sticky lg:top-20">
-        <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
-          id="nav"
-        >
-          <div className="flex flex-row space-x-0 pr-10">
-            {Object.entries(navItems).map(([path, { name, newTab }]) => {
-              const isActive = pathname === path;
-              return (
-                <Link
-                  key={path}
-                  href={path}
-                  className={`transition-all hover:text-neutral-400 flex align-middle relative py-1 px-2 m-1 ${isActive ? "text-orange-500 font-bold" : ""}`}
-                  prefetch={true}
-                  target={newTab ? "_blank" : "_self"}
-                >
-                  {name}
-                  {path === "https://shivamkatareblog.vercel.app/" && (
-                    <FaExternalLinkSquareAlt className="ml-1 h-4 w-4" />
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      </div>
-    </aside>
+    <div className="fixed top-6 z-[100] left-1/2 -translate-x-1/2 pointer-events-none">
+      <nav
+        className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-500 hover:border-white/20"
+        id="nav"
+      >
+        {Object.entries(navItems).map(([path, { name, newTab }]) => {
+          const isActive = pathname === path;
+          return (
+            <Link
+              key={path}
+              href={path}
+              className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isActive
+                  ? "text-white bg-white/10"
+                  : "text-zinc-400 hover:text-white hover:bg-white/5"
+              }`}
+              prefetch={true}
+              target={newTab ? "_blank" : "_self"}
+            >
+              {name}
+              {path === "https://shivamkatareblog.vercel.app/" && (
+                <RxExternalLink className="w-3.5 h-3.5 opacity-70" />
+              )}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
   );
 }

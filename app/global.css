@@ -1,103 +1,74 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+}
 
 ::selection {
-  background-color: #f38047;
-  color: #fefefe;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
 }
 
 :root {
   --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
+  --sh-identifier: #d1d5db;
   --sh-sign: #8996a3;
-  --sh-string: #007f7a;
-  --sh-keyword: #e02518;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
+  --sh-string: #10b981;
+  --sh-keyword: #f43f5e;
+  --sh-comment: #6b7280;
+  --sh-jsxliterals: #818cf8;
+  --sh-property: #fb923c;
+  --sh-entity: #fb923c;
 }
 
 body {
-  font-family:
-    var(--font-outfit),
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #050505;
+  color: #d4d4d8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family:
-    var(--font-outfit),
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    sans-serif;
+/* Fluid scroll */
+html {
+  scroll-behavior: smooth;
 }
 
-em,
-i,
-.italic {
-  font-family: var(--font-crimson), Georgia, "Times New Roman", serif;
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
-
-.font-crimson {
-  font-family: var(--font-crimson), Georgia, "Times New Roman", serif;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-
-.font-outfit {
-  font-family:
-    var(--font-outfit),
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    sans-serif;
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Animated SVG underline - opt-in with .link-underline class */
 .link-underline {
   position: relative;
   text-decoration: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 4C10 2 20 6 30 4C40 2 50 6 60 4C70 2 80 6 90 4C93 3.5 96.5 4 100 4' stroke='%23f38047' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='2' viewBox='0 0 100 2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 1H100' stroke='rgba(255,255,255,0.3)' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-position: 0 100%;
-  background-size: 100px 8px;
-  padding-bottom: 2px;
+  background-size: 100px 2px;
+  padding-bottom: 4px;
   transition:
-    color 0.3s ease,
-    background-position 0.6s ease;
+    color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-position 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .link-underline:hover {
   background-position: 100px 100%;
-  animation: underlineSlide 1.5s linear infinite;
-}
-
-@keyframes underlineSlide {
-  0% {
-    background-position: 0 100%;
-  }
-  100% {
-    background-position: 100px 100%;
-  }
 }
 
 .gallery-container {

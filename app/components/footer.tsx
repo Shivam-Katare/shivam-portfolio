@@ -12,7 +12,7 @@ function ArrowIcon() {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }
 
 export default function Footer() {
@@ -24,10 +24,10 @@ export default function Footer() {
             className="flex items-center transition-all hover:text-neutral-800"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://twitter.com/Shivamkatare_27"
+            href="https://x.com/Shivamkatare_27"
           >
             <ArrowIcon />
-            <p className="ml-2 h-7">twitter</p>
+            <p className="ml-2 h-7">X</p>
           </a>
         </li>
         <li>
@@ -57,5 +57,5 @@ export default function Footer() {
         © {new Date().getFullYear()} Shivam Katare
       </p>
     </footer>
-  )
+  );
 }

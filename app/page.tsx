@@ -8,18 +8,17 @@ import {
 } from "react-icons/pi";
 import { SiPeerlist } from "react-icons/si";
 import Link from "next/link";
-import { FloatButton } from "antd";
 import Project from "./components/project";
 import Outro from "./components/outro";
 import TypeWriter from "./components/typewriter";
 import Highlights from "./components/highlights/highlights";
 import { FaXTwitter } from "react-icons/fa6";
+import { FaDev } from "react-icons/fa";
 
 export default function Page() {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     show: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.15,
         delayChildren: 0.1,
@@ -89,6 +88,10 @@ export default function Page() {
               href: "https://www.linkedin.com/in/shivam-katare/",
               icon: PiLinkedinLogoThin,
             },
+            {
+              href: "https://www.dev.to/shivamkatare",
+              icon: FaDev,
+            },
             { href: "mailto:katare27451@gmail.com", icon: PiEnvelopeThin },
           ].map((social, idx) => (
             <Link
@@ -111,15 +114,12 @@ export default function Page() {
       </motion.section>
 
       {/* Highlights - Bento Style */}
-      <motion.section variants={itemVariants} className="w-full">
+      <section className="w-full">
         <Highlights />
-      </motion.section>
+      </section>
 
       {/* Selected Work */}
-      <motion.section
-        variants={itemVariants}
-        className="w-full flex flex-col gap-12"
-      >
+      <section className="w-full flex flex-col gap-12">
         <div className="flex w-full items-end justify-between border-b border-white/10 pb-6">
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-100">
             Selected Work.
@@ -133,13 +133,11 @@ export default function Page() {
           </Link>
         </div>
         <Project />
-      </motion.section>
+      </section>
 
-      <motion.section variants={itemVariants} className="w-full">
+      <section className="w-full">
         <Outro />
-      </motion.section>
-
-      <FloatButton.BackTop />
+      </section>
     </motion.div>
   );
 }

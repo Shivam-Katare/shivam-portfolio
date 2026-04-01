@@ -11,17 +11,32 @@ import { GeistMono } from "geist/font/mono";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Shivam Katare - Software Engineer",
+    default: "Frontend Developer & Technical Writer | Shivam Katare",
     template: "%s | Shivam Katare",
   },
-  description: "Senior Frontend Engineer, and Technical Writer.",
+  description: "Senior Frontend Engineer and Technical Writer specializing in React, Next.js, and crafting high-performance user interfaces with meticulous haptic depth and scalable architecture.",
   openGraph: {
-    title: "Shivam Katare",
-    description: "Senior Frontend Engineer, and Technical Writer.",
+    title: "Shivam Katare - Senior Frontend Developer",
+    description: "Senior Frontend Engineer and Technical Writer specializing in React, Next.js, and crafting high-performance user interfaces with meticulous haptic depth.",
     url: baseUrl,
-    siteName: "Shivam Katare",
+    siteName: "Shivam Katare Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og?title=Shivam Katare - Frontend Developer",
+        width: 1200,
+        height: 630,
+        alt: "Shivam Katare - Senior Frontend Developer & Technical Writer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shivam Katare - Senior Frontend Developer",
+    description: "Senior Frontend Engineer and Technical Writer specializing in React, Next.js, and crafting high-performance user interfaces.",
+    creator: "@Shivamkatare_27",
+    images: ["/og?title=Shivam Katare - Frontend Developer"],
   },
   robots: {
     index: true,

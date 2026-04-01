@@ -20,11 +20,7 @@ const navItems = {
   "/contact-me": {
     name: "Contact",
     newTab: false,
-  },
-  "https://shivamkatareblog.vercel.app/": {
-    name: "Blog",
-    newTab: true,
-  },
+  }
 };
 
 export function Navbar() {
@@ -32,7 +28,7 @@ export function Navbar() {
   return (
     <div className="fixed top-6 z-[100] left-1/2 -translate-x-1/2 pointer-events-none">
       <nav
-        className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-500 hover:border-white/20"
+        className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-500 hover:border-white/20"
         id="nav"
       >
         {Object.entries(navItems).map(([path, { name, newTab }]) => {

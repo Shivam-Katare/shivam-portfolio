@@ -29,14 +29,14 @@ export default function Project() {
     },
     {
       id: 2,
-      title: "Re-Card",
+      title: "Poppy",
       description:
-        "Generate and customize shareable profile cards for Hashnode bloggers to showcase their tech identity.",
-      meta: <>Community-driven · Loved by Hashnode</>,
-      image: "/recard.png",
-      viewUrl: "https://re-card.vercel.app",
-      sourceUrl: "https://github.com/Shivam-Katare/re-card",
-      ribbonText: "Featured",
+        "A fast-paced, 2D web game built with PixiJS where players type to pop words, track scores on a live leaderboard, and compete before the time runs out.",
+      meta: <>Built with PixiJS · Supabase · TypeScript</>,
+      image: "/poppy.png",
+      viewUrl: "https://playpoppy.vercel.app/",
+      sourceUrl: "",
+      ribbonText: "",
     },
   ];
 
@@ -89,15 +89,18 @@ export default function Project() {
               </p>
 
               <div className="flex gap-2">
-                <a
-                  href={project.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
-                  aria-label="Source Code"
-                >
-                  <PiGithubLogoThin className="text-xl" />
-                </a>
+                {project.sourceUrl !== "" && (
+                  <a
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:border-white/30 hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
+                    aria-label="Source Code"
+                  >
+                    <PiGithubLogoThin className="text-xl" />
+                  </a>
+                )}
+
                 <a
                   href={project.viewUrl}
                   target="_blank"

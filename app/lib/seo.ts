@@ -8,7 +8,7 @@ export const contentUpdatedAt = "2026-08-16";
 export const defaultTitle = "Shivam Katare | Software Engineer";
 
 export const defaultDescription =
-  "Software engineer building web products, AI applications, automation, developer tooling, and technical writing. Works with AI agents, MCP, coding workflows, and orchestration. Open to frontend engineering, AI product, and technical writing roles.";
+  "Software engineer building web products, AI tools, automation, and developer tooling. Open to frontend, AI product, and technical writing roles.";
 
 export const keywords = [
   "Shivam Katare",
@@ -81,6 +81,7 @@ export function pageMetadata({
   const url = path === "/" || path === "" ? baseUrl : `${baseUrl}${path}`;
   const ogTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
   const imagePath = "/og.png";
+  const imageAlt = `${ogTitle}. View work.`;
 
   return {
     title,
@@ -113,9 +114,10 @@ export function pageMetadata({
       images: [
         {
           url: imagePath,
-          width: 801,
-          height: 505,
-          alt: ogTitle,
+          width: 1200,
+          height: 630,
+          alt: imageAlt,
+          type: "image/png",
         },
       ],
     },
@@ -124,7 +126,13 @@ export function pageMetadata({
       title: ogTitle,
       description,
       creator: twitterHandle,
-      images: [imagePath],
+      site: twitterHandle,
+      images: [
+        {
+          url: imagePath,
+          alt: imageAlt,
+        },
+      ],
     },
   };
 }

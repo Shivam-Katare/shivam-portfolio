@@ -1,5 +1,5 @@
 import "./global.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
@@ -22,6 +22,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#f8f8f6",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -29,9 +33,24 @@ export const metadata: Metadata = {
     template: "%s | Shivam Katare",
   },
   description: defaultDescription,
+  applicationName: siteName,
   keywords,
   authors: [{ name: siteName, url: baseUrl }],
   creator: siteName,
+  appleWebApp: {
+    capable: true,
+    title: siteName,
+    statusBarStyle: "default",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/site.webmanifest",
   alternates: {
     canonical: baseUrl,
     types: {
@@ -48,9 +67,10 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og.png",
-        width: 801,
-        height: 505,
-        alt: defaultTitle,
+        width: 1200,
+        height: 630,
+        alt: `${defaultTitle}. View work.`,
+        type: "image/png",
       },
     ],
   },
@@ -59,7 +79,13 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: defaultDescription,
     creator: twitterHandle,
-    images: ["/og.png"],
+    site: twitterHandle,
+    images: [
+      {
+        url: "/og.png",
+        alt: `${defaultTitle}. View work.`,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -103,7 +129,6 @@ export default function RootLayout({
       )}
     >
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <Script
           src="https://t.raah.dev/script.js"
           data-pid="proj_9li6c2ututjsnbre"

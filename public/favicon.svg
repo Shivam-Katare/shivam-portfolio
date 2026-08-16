@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .mark { fill: #1a1a18; }
+    .letter { fill: #f8f8f6; }
+    @media (prefers-color-scheme: dark) {
+      .mark { fill: #f8f8f6; }
+      .letter { fill: #1a1a18; }
+    }
+  </style>
+  <rect class="mark" width="32" height="32" rx="8" />
+  <text
+    class="letter"
+    x="16"
+    y="21.5"
+    text-anchor="middle"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="13"
+    font-weight="700"
+  >SK</text>
+</svg>

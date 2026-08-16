@@ -47,9 +47,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `/og?title=${encodeURIComponent(defaultTitle)}`,
-        width: 1200,
-        height: 630,
+        url: "/og.png",
+        width: 801,
+        height: 505,
         alt: defaultTitle,
       },
     ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: defaultDescription,
     creator: twitterHandle,
-    images: [`/og?title=${encodeURIComponent(defaultTitle)}`],
+    images: ["/og.png"],
   },
   robots: {
     index: true,

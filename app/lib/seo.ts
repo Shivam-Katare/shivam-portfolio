@@ -80,7 +80,7 @@ export function pageMetadata({
 }: PageMetaInput): Metadata {
   const url = path === "/" || path === "" ? baseUrl : `${baseUrl}${path}`;
   const ogTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
-  const imagePath = `/og?title=${encodeURIComponent(ogTitle)}`;
+  const imagePath = "/og.png";
 
   return {
     title,
@@ -113,8 +113,8 @@ export function pageMetadata({
       images: [
         {
           url: imagePath,
-          width: 1200,
-          height: 630,
+          width: 801,
+          height: 505,
           alt: ogTitle,
         },
       ],

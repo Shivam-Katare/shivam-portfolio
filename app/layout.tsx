@@ -1,42 +1,65 @@
 import "./global.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
-import { baseUrl } from "./sitemap";
 import { Container } from "./components/container";
-import Head from "next/head";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { StretchyFooter } from "@/components/ui/stretchy-footer";
+import Script from "next/script";
+import {
+  baseUrl,
+  defaultDescription,
+  defaultTitle,
+  jsonLd,
+  keywords,
+  siteName,
+  twitterHandle,
+} from "app/lib/seo";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Frontend Developer & Technical Writer | Shivam Katare",
+    default: defaultTitle,
     template: "%s | Shivam Katare",
   },
-  description: "Senior Frontend Engineer and Technical Writer specializing in React, Next.js, and crafting high-performance user interfaces with meticulous haptic depth and scalable architecture.",
+  description: defaultDescription,
+  keywords,
+  authors: [{ name: siteName, url: baseUrl }],
+  creator: siteName,
+  alternates: {
+    canonical: baseUrl,
+    types: {
+      "application/rss+xml": `${baseUrl}/rss`,
+    },
+  },
   openGraph: {
-    title: "Shivam Katare - Senior Frontend Developer",
-    description: "Senior Frontend Engineer and Technical Writer specializing in React, Next.js, and crafting high-performance user interfaces with meticulous haptic depth.",
+    title: defaultTitle,
+    description: defaultDescription,
     url: baseUrl,
-    siteName: "Shivam Katare Portfolio",
+    siteName,
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og?title=Shivam Katare - Frontend Developer",
+        url: `/og?title=${encodeURIComponent(defaultTitle)}`,
         width: 1200,
         height: 630,
-        alt: "Shivam Katare - Senior Frontend Developer & Technical Writer",
+        alt: defaultTitle,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shivam Katare - Senior Frontend Developer",
-    description: "Senior Frontend Engineer and Technical Writer specializing in React, Next.js, and crafting high-performance user interfaces.",
-    creator: "@Shivamkatare_27",
-    images: ["/og?title=Shivam Katare - Frontend Developer"],
+    title: defaultTitle,
+    description: defaultDescription,
+    creator: twitterHandle,
+    images: [`/og?title=${encodeURIComponent(defaultTitle)}`],
   },
   robots: {
     index: true,
@@ -53,6 +76,18 @@ export const metadata: Metadata = {
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
 
+const paperAurora = [
+  "#f8f8f6", // exact --paper
+  "#EBF4F8", // pale sky
+  "#A8D4EE", // soft blue
+  "#5CB8E6", // bright sky
+  "#4A90E2", // peak blue
+  "#E2A76F", // sunlit peach
+  "#5CB8E6",
+  "#EBF4F8",
+  "#f8f8f6",
+];
+
 export default function RootLayout({
   children,
 }: {
@@ -62,38 +97,40 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "bg-[#050505] text-zinc-300 selection:bg-white/90 selection:text-black",
-        GeistSans.variable,
-        GeistMono.variable,
+        "bg-[var(--paper)] text-[var(--ink)] font-sans",
+        inter.variable,
+        inter.className,
       )}
     >
-      <Head>
+      <head>
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
-      </Head>
-      <body className="antialiased min-h-[100dvh] font-sans relative overflow-x-hidden">
-        {/* Cinematic Ethereal Glass Background Elements */}
-        <div className="fixed inset-0 z-[-1] pointer-events-none bg-[#050505]">
-          {/* Subtle glowing mesh */}
-          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-indigo-500/5 blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/5 blur-[100px]" />
-        </div>
-
-        {/* Noise Texture Overlay */}
-        <div
-          className="fixed inset-0 z-50 pointer-events-none opacity-[0.03]"
-          style={{
-            backgroundImage:
-              'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")',
-          }}
+        <Script
+          src="https://t.raah.dev/script.js"
+          data-pid="proj_9li6c2ututjsnbre"
+          data-domain="shivamkatare.vercel.app"
+          strategy="afterInteractive"
         />
-
-        <div className="relative z-10 w-full pt-8 flex flex-col items-center">
-          <Navbar />
-          <Container className="w-full flex max-w-[1200px] flex-col items-stretch py-16 px-6 sm:px-12 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
-            {children}
-            <Analytics />
-          </Container>
+      </head>
+      <body className="antialiased min-h-[100dvh] relative bg-[var(--paper)] text-[var(--ink)]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Viewport-fixed so overscroll lift does not take the paper grain with it. */}
+        <div
+          className="paper-noise pointer-events-none fixed inset-0 z-[1]"
+          aria-hidden
+        />
+        <Navbar />
+        <div data-stretchy-page className="relative z-10 w-full overflow-x-clip">
+          <div className="relative z-10 w-full flex flex-col items-center">
+            <Container className="w-full flex max-w-[1200px] flex-col items-stretch px-6 sm:px-12">
+              {children}
+              <Analytics />
+            </Container>
+          </div>
         </div>
+        <StretchyFooter windowScroll colors={paperAurora} />
       </body>
     </html>
   );

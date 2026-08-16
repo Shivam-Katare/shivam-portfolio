@@ -9,18 +9,18 @@ const navItems = {
     name: "Home",
     newTab: false,
   },
-  "/skills": {
-    name: "Skills",
-    newTab: false,
-  },
   "/work": {
     name: "Work",
+    newTab: false,
+  },
+  "/highlights": {
+    name: "Highlights",
     newTab: false,
   },
   "/contact-me": {
     name: "Contact",
     newTab: false,
-  }
+  },
 };
 
 export function Navbar() {
@@ -28,7 +28,7 @@ export function Navbar() {
   return (
     <div className="fixed top-6 z-[100] left-1/2 -translate-x-1/2 pointer-events-none">
       <nav
-        className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-500 hover:border-white/20"
+        className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-[var(--paper)]/80 backdrop-blur-xl border border-[var(--ink)]/10 shadow-[0_1px_0_rgba(26,26,24,0.03)]"
         id="nav"
       >
         {Object.entries(navItems).map(([path, { name, newTab }]) => {
@@ -37,10 +37,10 @@ export function Navbar() {
             <Link
               key={path}
               href={path}
-              className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`relative flex items-center gap-1.5 px-2.5 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-medium transition-colors duration-200 ${
                 isActive
-                  ? "text-white bg-white/10"
-                  : "text-zinc-400 hover:text-white hover:bg-white/5"
+                  ? "text-[var(--ink)] bg-[var(--ink)]/[0.06]"
+                  : "text-[var(--ink-muted)] hover:text-[var(--ink)] hover:bg-[var(--ink)]/[0.04]"
               }`}
               prefetch={true}
               target={newTab ? "_blank" : "_self"}

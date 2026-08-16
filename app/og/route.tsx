@@ -1,4 +1,6 @@
-import { ImageResponse } from 'next/og'
+import { ImageResponse } from "next/og";
+
+export const runtime = "edge";
 
 export function GET(request: Request) {
   let url = new URL(request.url)

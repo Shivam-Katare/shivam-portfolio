@@ -1,7 +1,9 @@
-import { EmailTemplate } from 'app/components/email-template';
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
-import { v4 as uuid } from 'uuid';
+import { EmailTemplate } from "app/components/email-template";
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { v4 as uuid } from "uuid";
+
+export const dynamic = "force-dynamic";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

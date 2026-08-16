@@ -1,0 +1,25 @@
+export const workStacks = {
+  triallies: [
+    "Next.js",
+    "Redux",
+    "Zustand",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "WebSockets",
+  ],
+  flagright: ["Next.js", "TypeScript", "Ant Design", "Tailwind CSS"],
+  accuknox: ["React", "Redux", "JavaScript", "Framer Motion", "React Query"],
+  tria: ["TypeScript", "Next.js", "Kestra", "NextAuth", "Docker", "Resend"],
+  moood: ["Agno", "Python", "Firecrawl", "Streamlit"],
+  securityAutomation: ["Kestra", "CI/CD", "Vercel Rollback API", "YAML"],
+  reactplay: [
+    "React",
+    "JavaScript",
+    "Tailwind CSS",
+    "Technical Writing",
+    "Community Building",
+    "Public Speaking",
+  ],
+  kestra: ["Vue", "TypeScript"],
+  humansOfTech: ["Technical Writing", "Interviews", "Q&A"],
+} as const;

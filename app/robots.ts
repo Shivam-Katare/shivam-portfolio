@@ -1,12 +1,18 @@
-import { baseUrl } from 'app/sitemap'
+import type { MetadataRoute } from "next";
+import { baseUrl } from "app/lib/seo";
 
-export default function robots() {
+export const dynamic = "force-static";
+
+export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    host: baseUrl,
+  };
 }

@@ -1,28 +1,20 @@
 import type { Metadata } from "next";
+import { pageMetadata, sitePages } from "app/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact for Freelance & Developer Roles",
-  description: "Get in touch for freelance development collaborations, technical writing opportunities, or full-time frontend engineering roles. Let's connect.",
-  openGraph: {
-    title: "Contact for Freelance & Developer Roles",
-    description: "Get in touch for freelance development collaborations, technical writing opportunities, or full-time frontend engineering roles. Let's connect.",
-    images: [
-      {
-        url: "/og?title=Contact Me",
-        width: 1200,
-        height: 630,
-        alt: "Contact Me - Shivam Katare",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact for Freelance & Developer Roles",
-    description: "Get in touch for freelance development collaborations, technical writing opportunities, or full-time frontend engineering roles. Let's connect.",
-    images: ["/og?title=Contact Me"],
-  },
-};
+export const dynamic = "force-static";
 
-export default function ContactLayout({ children }: { children: React.ReactNode }) {
+const page = sitePages.find((item) => item.path === "/contact-me")!;
+
+export const metadata: Metadata = pageMetadata({
+  title: page.title,
+  description: page.description,
+  path: page.path,
+});
+
+export default function ContactLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return <>{children}</>;
 }

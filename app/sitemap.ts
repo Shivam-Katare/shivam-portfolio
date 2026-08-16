@@ -1,24 +1,13 @@
-import { getBlogPosts } from "app/blog/utils";
+import type { MetadataRoute } from "next";
+import { baseUrl, contentUpdatedAt, sitePages } from "app/lib/seo";
 
-export const baseUrl = "https://shivamkatare.vercel.app";
+export const dynamic = "force-static";
 
-export default async function sitemap() {
-  let blogs = getBlogPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
+export default function sitemap(): MetadataRoute.Sitemap {
+  return sitePages.map((page) => ({
+    url: page.path === "" ? baseUrl : `${baseUrl}${page.path}`,
+    lastModified: contentUpdatedAt,
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
   }));
-
-  let routes = [
-    "",
-    "/blog",
-    "/work",
-    "/skills",
-    "/contact-me",
-    "/achievements",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }));
-
-  return [...routes, ...blogs];
 }

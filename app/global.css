@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
 }
 
 :root {
   --paper: #f8f8f6;
-  --ink: #1a1a18;
-  --ink-secondary: #3f3f3b;
-  --ink-muted: #6f6f6a;
-  --line: #e6e6e2;
-  --title-color: #1a1a18;
+  --ink: #08090a;
+  --ink-secondary: #171717;
+  --ink-muted: #5e5e5e;
+  --line: #e5e5e5;
+  --title-color: #08090a;
   --link-mark: #d85a30;
 }
 
 ::selection {
-  background-color: rgba(26, 26, 24, 0.12);
-  color: #1a1a18;
+  background-color: rgba(8, 9, 10, 0.12);
+  color: #08090a;
 }
 
 :root {
@@ -78,11 +79,11 @@ html {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(26, 26, 24, 0.14);
+  background: rgba(8, 9, 10, 0.14);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(26, 26, 24, 0.22);
+  background: rgba(8, 9, 10, 0.24);
 }
 
 /* Animated SVG underline - opt-in with .link-underline class */
@@ -312,7 +313,7 @@ h2,
 h3,
 h4 {
   color: var(--title-color);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 ul {
@@ -325,33 +326,33 @@ a {
 
 a.text-link {
   display: inline;
+  font-weight: 500;
   color: var(--ink);
-  text-decoration: none;
-  background-color: color-mix(in srgb, #3d30d8 16%, transparent);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  padding: 0.08em 0.28em 0.1em;
-  margin: 0 0.04em;
-  border-radius: 3px;
-  transition: background-color 200ms ease;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, var(--ink) 32%, transparent);
+  transition:
+    color 200ms ease,
+    text-decoration-color 200ms ease;
 }
 
 a.text-link:hover {
-  background-color: color-mix(in srgb, #3d30d8 26%, transparent);
+  text-decoration-color: var(--ink);
 }
 
 a.text-link .text-link-icon {
   display: inline;
   width: 0.72em;
   height: 0.72em;
-  margin-left: 0.18em;
+  margin-left: 0.14em;
   vertical-align: -0.05em;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 a.page-link {
   display: inline;
-  font-weight: 650;
+  font-weight: 600;
   color: var(--ink);
   text-decoration: underline dotted;
   text-decoration-thickness: 1px;

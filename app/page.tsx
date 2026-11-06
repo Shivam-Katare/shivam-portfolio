@@ -1,99 +1,222 @@
 import Link from "next/link";
-import Badge from "./components/badge";
+import { HomeExperienceRow } from "./components/home-experience-row";
 import { Portrait } from "./components/portrait";
-import { ProofStats } from "./components/proof-stats";
 import { PageLink, TextLink } from "./components/text-link";
-import { socials } from "./lib/constant";
 
 export const dynamic = "force-static";
 
+const workExperience = [
+  {
+    logo: "/triallies.png",
+    title: "Triallies",
+    subtitle: "Software Engineer",
+    period: "Oct 2023 - Present",
+    href: "https://triallies.com/",
+    bullets: [
+      "Built a real-time chat system enabling support reps and AI agents to handle 100+ concurrent customer conversations with under 200ms latency.",
+      "Engineered automated WhatsApp campaign tooling reaching 5,000+ customers per run with automatic contact deduplication.",
+      "Automated weekly staff commission workflows, reducing manual operations time by 40%.",
+    ],
+  },
+  {
+    logo: "/studio1.png",
+    title: "Studio1",
+    subtitle: "Independent Engineer & Technical Writer",
+    period: "2024 - Present",
+    href: "https://www.studio1hq.com/",
+    bullets: [
+      "Built and tested AI agents, MCP integrations, AI coding workflows, and developer tools for software teams.",
+      "Authored deep-dive technical guides, tutorials, and product documentation across 10+ engineering organizations.",
+    ],
+  },
+  {
+    logo: "/flagright.svg",
+    title: "Flagright",
+    subtitle: "Software Engineer Intern",
+    period: "Apr 2023 - Jul 2023",
+    href: "https://www.flagright.com/",
+    bullets: [
+      "Built responsive product interfaces with Next.js, TypeScript, and Tailwind CSS, cutting load time from 4.2s to 1.8s (89+ PageSpeed).",
+    ],
+  },
+  {
+    logo: "/accuknox.jpeg",
+    title: "AccuKnox",
+    subtitle: "React JS Developer",
+    period: "Jun 2022 - Mar 2023",
+    href: "https://www.accuknox.com/",
+    bullets: [
+      "Migrated the cloud-security dashboard state layer from Redux to React Query, reducing bundle size by 30%.",
+    ],
+  },
+] as const;
+
+const openSourceAndSelected = [
+  {
+    logo: "/reactplaylogo.png",
+    title: "ReactPlay",
+    subtitle: "Core Maintainer · Open-source React learning platform",
+    period: "Core Maintainer",
+    href: "https://github.com/reactplay/react-play",
+    bullets: [
+      "Reviewed community pull requests, led technical discussions, and maintained core platform architecture alongside the open-source community.",
+    ],
+  },
+  {
+    logo: "/Kestra.full.logo.dark.svg",
+    title: "Kestra",
+    subtitle: "Open Source Contributor · Workflow orchestration platform",
+    period: "Contributor",
+    href: "https://github.com/kestra-io/kestra",
+    bullets: [
+      "Contributed UI engineering fixes for asynchronous rendering and theme regressions across Kestra's AI workflow tooling.",
+    ],
+  },
+  {
+    logo: "/hackathon.png",
+    title: "Tria",
+    subtitle: "AI Email Intelligence Agent · Won $4,000 Hackathon Prize",
+    period: "1st Place",
+    href: "https://hellotria.vercel.app/",
+    bullets: [
+      "Built an autonomous Gmail intelligence agent using Next.js, TypeScript, and Kestra to classify, summarize, and prioritize high-volume inboxes.",
+    ],
+  },
+] as const;
+
+const proofMetrics = [
+  {
+    value: "12+",
+    label: "AI projects delivered",
+    href: "/work#projects",
+  },
+  {
+    value: "4",
+    label: "Hackathon wins",
+    href: "/work#projects",
+  },
+  {
+    value: "70+",
+    label: "Technical articles for 10+ companies",
+    href: "https://dev.to/shivamkatare",
+    external: true,
+  },
+  {
+    value: "3",
+    label: "Technical talks given",
+    href: "/highlights#talks",
+  },
+] as const;
+
 export default function Page() {
   return (
-    <main className="home-intro mx-auto w-full max-w-[640px] pt-28 pb-20 md:pt-32 md:pb-24">
-      <div className="flex items-start justify-between gap-5">
-        <div className="min-w-0">
-          <h1 className="text-[1.75rem] md:text-[1.95rem] font-semibold tracking-[-0.03em] leading-[1.2] text-[var(--ink)]">
-            Hey, I&apos;m Shivam!
-          </h1>
-          <p className="mt-2 text-[1.0025rem] leading-[1.6] italic text-[var(--ink-secondary)]">
-            A software engineer who builds products and the systems behind them.
-          </p>
+    <main className="home-intro mx-auto w-full max-w-[640px] space-y-10 pt-28 pb-12 md:pt-32 md:pb-14">
+      {/* Hero + Intro + Proof Numbers */}
+      <section id="hero">
+        <div className="flex items-start justify-between gap-5">
+          <div className="min-w-0">
+            <h1 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-[1.12] text-[#08090A]">
+              Hey, I&apos;m Shivam!
+            </h1>
+            <p className="mt-2 text-[0.975rem] sm:text-[1.0625rem] font-normal italic leading-[1.55] text-[#5E5E5E]">
+              Software engineer working across web products, AI agents, and
+              developer tooling.
+            </p>
+          </div>
+          <Portrait />
         </div>
-        <Portrait />
-      </div>
 
-      <p className="mt-7 text-[1.0025rem] leading-[1.7] text-[var(--ink-secondary)]">
-        A lot of my work sits around web products, AI tools, automation, and
-        developer tooling. I like building things, testing how they work in
-        practice, and{" "}
-        <TextLink href="https://dev.to/shivamkatare">writing</TextLink> about
-        what I learn along the way.
-      </p>
+        <p className="mt-6 text-[0.875rem] sm:text-[0.9375rem] font-normal leading-[1.7] text-[#5E5E5E]">
+          Right now I build real-time customer and AI workflows at{" "}
+          <TextLink href="https://triallies.com/">Triallies</TextLink>, and take
+          on independent engineering and technical writing through{" "}
+          <TextLink href="https://www.studio1hq.com/">Studio1</TextLink>. Most
+          of my time goes into shipping product interfaces, testing how AI tools
+          hold up in production, and{" "}
+          <TextLink href="https://dev.to/shivamkatare">writing</TextLink> about
+          what I learn.
+        </p>
 
-      <ProofStats />
+        {/* Proof of Work Strip */}
+        <div
+          className="mt-7 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-[#E5E5E5] py-4 sm:grid-cols-4"
+          aria-label="Key achievements"
+        >
+          {proofMetrics.map((item) => {
+            const content = (
+              <>
+                <span className="block text-[1.4375rem] font-bold tabular-nums tracking-[-0.03em] leading-[1.2] text-[#08090A]">
+                  {item.value}
+                </span>
+                <span className="mt-0.5 block text-[0.75rem] font-normal leading-[1.35] text-[#5E5E5E]">
+                  {item.label}
+                </span>
+              </>
+            );
 
-      <p className="mt-9 text-[1.0025rem] leading-[1.7] text-[var(--ink-secondary)]">
-        I&apos;m currently a Software Engineer at{" "}
-        <Badge
-          icon="/triallies.png"
-          text="Triallies"
-          link="https://triallies.com/"
-        />
-        , where I work on product systems involving real-time communication,
-        automation, and AI-assisted workflows. Outside my full-time role, I also
-        take on independent work through{" "}
-        <Badge
-          icon="/studio1.png"
-          text="Studio1"
-          link="https://www.studio1hq.com/"
-        />
-        , building and testing AI tools, agents, developer tooling, and other
-        prototypes for software teams.
-      </p>
+            if ("external" in item && item.external) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block transition-opacity duration-150 hover:opacity-75"
+                >
+                  {content}
+                </a>
+              );
+            }
 
-      <p className="mt-7 text-[1.0025rem] leading-[1.7] text-[var(--ink-secondary)]">
-        I&apos;ve also worked on{" "}
-        <PageLink href="/work#open-source">open-source projects</PageLink>{" "}
-        including{" "}
-        <Badge
-          icon="/Kestra.full.logo.dark.svg"
-          text="Kestra"
-          link="https://github.com/kestra-io/kestra"
-        />{" "}
-        and{" "}
-        <Badge
-          icon="/reactplaylogo.png"
-          text="ReactPlay"
-          link="https://github.com/reactplay/react-play"
-        />
-        , where I was a Core Maintainer. Apart from that, {" "}
-        <PageLink href="/work#projects">you can see the projects I&apos;ve built</PageLink>
-      </p>
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group block transition-opacity duration-150 hover:opacity-75"
+              >
+                {content}
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
-      <p className="mt-8 text-[1.0025rem] leading-[1.7] text-[var(--ink-secondary)]">
-        I&apos;m currently exploring my next role across frontend engineering,
-        AI products, and technical writing. If you&apos;re working on something
-        interesting,{" "}
-        <TextLink href="mailto:katare27451@gmail.com">say hi</TextLink>.
-      </p>
-
-      <p className="mt-5 flex flex-wrap items-center gap-x-3.5 gap-y-2 text-[1.0025rem] leading-[1.7] text-[var(--ink-secondary)]">
-        You can find me here too
-        <span className="inline-flex items-center gap-3.5">
-          {socials.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="text-[var(--ink)] cursor-pointer transition-colors duration-200 hover:text-[var(--link-mark)]"
-            >
-              <Icon className="size-6" />
-            </Link>
+      {/* Work Experience */}
+      <section id="work-experience">
+        <h2 className="text-[1.125rem] sm:text-[1.25rem] font-bold tracking-[-0.02em] leading-[1.3] text-[#08090A]">
+          Work Experience
+        </h2>
+        <div className="mt-4 flex flex-col gap-5">
+          {workExperience.map((item) => (
+            <HomeExperienceRow key={item.title} {...item} />
           ))}
-        </span>
-      </p>
+        </div>
+      </section>
+
+      {/* Open Source & Highlights */}
+      <section id="open-source">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2 className="text-[1.125rem] sm:text-[1.25rem] font-bold tracking-[-0.02em] leading-[1.3] text-[#08090A]">
+            Open Source &amp; Highlights
+          </h2>
+          <PageLink href="/work">View all work</PageLink>
+        </div>
+        <div className="mt-4 flex flex-col gap-5">
+          {openSourceAndSelected.map((item) => (
+            <HomeExperienceRow key={item.title} {...item} />
+          ))}
+        </div>
+      </section>
+
+      {/* Closing Note */}
+      <section id="closing" className="pt-2">
+        <p className="text-[0.875rem] sm:text-[0.9375rem] font-normal leading-[1.7] text-[#5E5E5E]">
+          I&apos;m currently exploring my next role across frontend engineering,
+          AI products, and technical writing. If you&apos;re working on
+          something interesting,{" "}
+          <TextLink href="mailto:katare27451@gmail.com">say hi</TextLink>.
+        </p>
+      </section>
     </main>
   );
 }

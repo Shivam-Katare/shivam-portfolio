@@ -26,28 +26,29 @@ const navItems = {
 export function Navbar() {
   const pathname = usePathname();
   return (
-    <div className="fixed top-6 z-[100] left-1/2 -translate-x-1/2 pointer-events-none">
+    <div className="pointer-events-none fixed top-6 left-1/2 z-[100] -translate-x-1/2">
       <nav
-        className="pointer-events-auto flex items-center gap-1 p-1.5 rounded-full bg-[var(--paper)]/80 backdrop-blur-xl border border-[var(--ink)]/10 shadow-[0_1px_0_rgba(26,26,24,0.03)]"
+        className="pointer-events-auto flex items-center gap-1 rounded-full border border-[#E5E5E5] bg-[var(--paper)]/85 p-1.5 backdrop-blur-xl shadow-[0_2px_12px_rgba(8,9,10,0.04)]"
         id="nav"
       >
         {Object.entries(navItems).map(([path, { name, newTab }]) => {
-          const isActive = pathname === path;
+          const isActive =
+            path === "/" ? pathname === "/" : pathname?.startsWith(path);
           return (
             <Link
               key={path}
               href={path}
-              className={`relative flex items-center gap-1.5 px-2.5 sm:px-4 py-2 rounded-full text-[13px] sm:text-sm font-medium transition-colors duration-200 ${
+              className={`relative flex items-center gap-1.5 rounded-full px-3 sm:px-4 py-1.5 text-[13px] sm:text-[14px] font-medium transition-colors duration-200 ${
                 isActive
-                  ? "text-[var(--ink)] bg-[var(--ink)]/[0.06]"
-                  : "text-[var(--ink-muted)] hover:text-[var(--ink)] hover:bg-[var(--ink)]/[0.04]"
+                  ? "bg-[#08090A]/[0.07] text-[#08090A]"
+                  : "text-[#5E5E5E] hover:bg-[#08090A]/[0.04] hover:text-[#08090A]"
               }`}
               prefetch={true}
               target={newTab ? "_blank" : "_self"}
             >
               {name}
               {path === "https://shivamkatareblog.vercel.app/" && (
-                <RxExternalLink className="w-3.5 h-3.5 opacity-70" />
+                <RxExternalLink className="h-3.5 w-3.5 opacity-70" />
               )}
             </Link>
           );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { FaXTwitter } from "react-icons/fa6";
 import { PiArrowUpRight, PiGithubLogo, PiGlobe } from "react-icons/pi";
 import { PageJumpNav } from "app/components/page-jump-nav";
 import { TextLink } from "app/components/text-link";
@@ -28,16 +29,26 @@ const sections = [
   },
 ] as const;
 
-const projects = [
+type ProjectItem = {
+  name: string;
+  category: string;
+  badge?: string;
+  description: string;
+  tags: readonly string[];
+  live?: string;
+  github?: string;
+  post?: string;
+};
+
+const projects: readonly ProjectItem[] = [
   {
-    name: "Tria",
-    category: "AI Email Intelligence",
-    badge: "Won $4,000 Hackathon Prize",
+    name: "CursorBlossom",
+    category: "3D Desktop Companion for Windows",
+    badge: "Latest Experiment",
     description:
-      "Built an autonomous AI agent that connects to Gmail to classify, summarize, and prioritize high-volume inboxes so important threads never get buried.",
-    tags: workStacks.tria,
-    live: "https://hellotria.vercel.app/",
-    github: "https://github.com/Shivam-Katare/tria",
+      "Built an interactive 3D character that lives directly on the Windows desktop as a transparent, always-on-top overlay—tracking cursor physics in real time, reacting to movement, and staying persistent across app switches.",
+    tags: workStacks.cursorBlossom,
+    post: "https://x.com/Shivamkatare_27/status/2118326293389533576?a=by4-_46YImejtoQ7d-8&s=20",
   },
   {
     name: "Moood",
@@ -70,7 +81,7 @@ function Section({
     <section id={id} className="scroll-mt-28">
       <div className="mb-5 flex items-center gap-4">
         <h2 className="shrink-0 text-[1.125rem] sm:text-[1.25rem] font-bold tracking-[-0.02em] leading-[1.3] text-[#08090A]">
-          <a href={`/work#${id}`} className="hover:opacity-75 transition-opacity">
+          <a href={`/work#${id}`} className="transition-opacity hover:opacity-75">
             {title}
           </a>
         </h2>
@@ -139,7 +150,7 @@ function DetailedRoleItem({
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:underline underline-offset-4 decoration-[#D4D4D4] hover:decoration-[#08090A]"
+                  className="inline-flex items-center gap-1 decoration-[#D4D4D4] underline-offset-4 hover:underline hover:decoration-[#08090A]"
                 >
                   {company}
                   <PiArrowUpRight
@@ -201,61 +212,87 @@ export default function Work() {
       <Section id="projects" title="Projects">
         <div className="grid grid-cols-1 gap-4">
           {projects.map(
-            ({ name, category, badge, description, tags, live, github }) => (
-              <article
-                key={name}
-                className="rounded-[12px] border border-[#E5E5E5] bg-white p-5 transition-colors duration-200 hover:border-[#08090A]/25"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-[1rem] font-bold tracking-[-0.015em] leading-[1.3] text-[#08090A]">
-                        {name}
-                      </h3>
-                      {badge ? (
-                        <span className="rounded-[5px] bg-[#171717] px-2 py-0.5 text-[0.6875rem] font-medium leading-[1.2] text-white">
-                          {badge}
-                        </span>
+            ({ name, category, badge, description, tags, live, github, post }) => {
+              const primaryHref = post ?? live ?? github;
+
+              return (
+                <article
+                  key={name}
+                  className="rounded-[12px] border border-[#E5E5E5] bg-white p-5 transition-colors duration-200 hover:border-[#08090A]/25"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-[1rem] font-bold tracking-[-0.015em] leading-[1.3] text-[#08090A]">
+                          {primaryHref ? (
+                            <a
+                              href={primaryHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 decoration-[#D4D4D4] underline-offset-4 hover:underline hover:decoration-[#08090A]"
+                            >
+                              {name}
+                            </a>
+                          ) : (
+                            name
+                          )}
+                        </h3>
+                        {badge ? (
+                          <span className="rounded-[5px] bg-[#171717] px-2 py-0.5 text-[0.6875rem] font-medium leading-[1.2] text-white">
+                            {badge}
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="mt-0.5 text-[0.8125rem] font-normal text-[#5E5E5E]">
+                        {category}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      {post ? (
+                        <a
+                          href={post}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-[6px] border border-[#E5E5E5] bg-[#F8F8F6] px-2.5 py-1 text-[0.75rem] font-medium text-[#08090A] transition-colors hover:border-[#08090A]/30 hover:bg-[#EFEFEC]"
+                        >
+                          <FaXTwitter className="size-3" aria-hidden />
+                          Demo
+                        </a>
+                      ) : null}
+                      {live ? (
+                        <a
+                          href={live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded-[6px] border border-[#E5E5E5] bg-[#F8F8F6] px-2.5 py-1 text-[0.75rem] font-medium text-[#08090A] transition-colors hover:border-[#08090A]/30 hover:bg-[#EFEFEC]"
+                        >
+                          <PiGlobe className="size-3.5" aria-hidden />
+                          Live
+                        </a>
+                      ) : null}
+                      {github ? (
+                        <a
+                          href={github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded-[6px] border border-[#E5E5E5] bg-[#F8F8F6] px-2.5 py-1 text-[0.75rem] font-medium text-[#08090A] transition-colors hover:border-[#08090A]/30 hover:bg-[#EFEFEC]"
+                        >
+                          <PiGithubLogo className="size-3.5" aria-hidden />
+                          Code
+                        </a>
                       ) : null}
                     </div>
-                    <p className="mt-0.5 text-[0.8125rem] font-normal text-[#5E5E5E]">
-                      {category}
-                    </p>
                   </div>
 
-                  <div className="flex items-center gap-1.5">
-                    {live ? (
-                      <a
-                        href={live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-[6px] border border-[#E5E5E5] bg-[#F8F8F6] px-2.5 py-1 text-[0.75rem] font-medium text-[#08090A] transition-colors hover:border-[#08090A]/30 hover:bg-[#EFEFEC]"
-                      >
-                        <PiGlobe className="size-3.5" aria-hidden />
-                        Live
-                      </a>
-                    ) : null}
-                    {github ? (
-                      <a
-                        href={github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-[6px] border border-[#E5E5E5] bg-[#F8F8F6] px-2.5 py-1 text-[0.75rem] font-medium text-[#08090A] transition-colors hover:border-[#08090A]/30 hover:bg-[#EFEFEC]"
-                      >
-                        <PiGithubLogo className="size-3.5" aria-hidden />
-                        Code
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
+                  <p className="mt-3 text-[0.875rem] leading-[1.65] text-[#5E5E5E]">
+                    {description}
+                  </p>
 
-                <p className="mt-3 text-[0.875rem] leading-[1.65] text-[#5E5E5E]">
-                  {description}
-                </p>
-
-                <StackPills tags={tags} />
-              </article>
-            ),
+                  <StackPills tags={tags} />
+                </article>
+              );
+            },
           )}
         </div>
       </Section>

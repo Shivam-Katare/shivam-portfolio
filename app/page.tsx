@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HomeExperienceRow } from "./components/home-experience-row";
+import { HomeFeaturedProjects } from "./components/home-featured-projects";
 import { Portrait } from "./components/portrait";
 import { PageLink, TextLink } from "./components/text-link";
 
@@ -51,7 +52,7 @@ const workExperience = [
   },
 ] as const;
 
-const openSourceAndSelected = [
+const openSource = [
   {
     logo: "/reactplaylogo.png",
     title: "ReactPlay",
@@ -72,23 +73,13 @@ const openSourceAndSelected = [
       "Contributed UI engineering fixes for asynchronous rendering and theme regressions across Kestra's AI workflow tooling.",
     ],
   },
-  {
-    logo: "/hackathon.png",
-    title: "Tria",
-    subtitle: "AI Email Intelligence Agent · Won $4,000 Hackathon Prize",
-    period: "1st Place",
-    href: "https://hellotria.vercel.app/",
-    bullets: [
-      "Built an autonomous Gmail intelligence agent using Next.js, TypeScript, and Kestra to classify, summarize, and prioritize high-volume inboxes.",
-    ],
-  },
 ] as const;
 
 const proofMetrics = [
   {
-    value: "12+",
-    label: "AI projects delivered",
-    href: "/work#projects",
+    value: "4+ yrs",
+    label: "Shipping web & AI systems",
+    href: "/work#professional-experience",
   },
   {
     value: "4",
@@ -193,16 +184,29 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Open Source & Highlights */}
+      {/* Selected Projects (Koro + Tria) */}
+      <section id="selected-projects">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2 className="text-[1.125rem] sm:text-[1.25rem] font-bold tracking-[-0.02em] leading-[1.3] text-[#08090A]">
+            Selected Projects
+          </h2>
+          <PageLink href="/work#projects">All projects</PageLink>
+        </div>
+        <div className="mt-4">
+          <HomeFeaturedProjects />
+        </div>
+      </section>
+
+      {/* Open Source */}
       <section id="open-source">
         <div className="flex items-baseline justify-between gap-4">
           <h2 className="text-[1.125rem] sm:text-[1.25rem] font-bold tracking-[-0.02em] leading-[1.3] text-[#08090A]">
-            Open Source &amp; Highlights
+            Open Source
           </h2>
-          <PageLink href="/work">View all work</PageLink>
+          <PageLink href="/work#open-source">Full work history</PageLink>
         </div>
         <div className="mt-4 flex flex-col gap-5">
-          {openSourceAndSelected.map((item) => (
+          {openSource.map((item) => (
             <HomeExperienceRow key={item.title} {...item} />
           ))}
         </div>
